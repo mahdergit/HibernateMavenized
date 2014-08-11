@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title>#{msgs.title}</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2" rendered="#{!accountCont.edited}">
+       #{msgs.fname}
+       <h:outputText value="#{accountCont.selected.firstName}" />
+       #{msgs.lname}
+       <h:outputText value="#{accountCont.selected.lastName}" />
+        #{msgs.state}
+       <h:outputText value="#{accountCont.selected.state}" />
+        #{msgs.street}
+       <h:outputText value="#{accountCont.selected.street}" />
+        #{msgs.zip}
+       <h:outputText value="#{accountCont.selected.zip}" />
+        #{msgs.city}
+       <h:outputText value="#{accountCont.selected.city}" />
+        #{msgs.email}
+       <h:outputText value="#{accountCont.selected.email}" /><br/>
+       <h:commandButton value="#{msgs.edit}" action="#{accountCont.readyEditProfile}" />
+		</h:panelGrid>
+		<h:panelGrid columns="2" rendered="#{accountCont.edited}">
+       #{msgs.fname}
+       <h:inputText value="#{accountCont.selected.firstName}" />
+       #{msgs.lname}
+       <h:inputText value="#{accountCont.selected.lastName}" />
+        #{msgs.state}
+       <h:inputText value="#{accountCont.selected.state}" />
+        #{msgs.street}
+       <h:inputText value="#{accountCont.selected.street}" />
+        #{msgs.zip}
+       <h:inputText value="#{accountCont.selected.zip}" />
+        #{msgs.city}
+       <h:inputText value="#{accountCont.selected.city}" />
+        #{msgs.email}
+       <h:inputText value="#{accountCont.selected.email}" /><br/>
+       <h:commandButton value="#{msgs.edit}" action="#{accountCont.editProfile}" />
+		</h:panelGrid>
+
+		
+	</h:form>
+</h:body>
+</html>
