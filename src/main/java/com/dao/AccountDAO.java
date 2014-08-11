@@ -38,21 +38,13 @@ public class AccountDAO extends AbstractFacade<Account>{
 		Query query=sf.getCurrentSession().createQuery("SELECT a FROM Account a WHERE a.email = :email");
 		query.setParameter("email", email);
 		List<Account> ac=query.list();
-		account=ac.get(0);
-		System.out.println(account.getFirstName());
+		if(!ac.isEmpty()){
+			account=ac.get(0);
+		}
+		//System.out.println(account.getFirstName());
 		return account;
 	}
-	public static void main(String [] args){
-		SessionFactory sf = HibernateUtil.getSessionFactory();
-		org.hibernate.Transaction tx = sf.getCurrentSession().beginTransaction();
-		AccountDAO dao=new AccountDAO();		
-		
 	
-		dao.getAccountByEmail("ghenet");
-		tx.commit();
-	}
-	
-
 
 }
 

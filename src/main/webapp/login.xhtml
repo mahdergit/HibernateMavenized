@@ -12,12 +12,20 @@
 	<h:form>
 		<h:panelGrid columns="2">
         #{msgs.email}
-       <h:inputText value="#{accountCont.selected.email}" />
+        <h:panelGroup>
+       <h:inputText id="email" label="email" value="#{accountCont.selected.email}" required="true"
+							requiredMessage="#{msgs.errorEmail}"/><br/>
+		<h:message for="email" styleClass="errorMessage"/>					
+		</h:panelGroup>					
         #{msgs.password}
-       <h:inputSecret value="#{accountCont.selected.password}" />
+        <h:panelGroup>
+       <h:inputSecret id="password" label="password" value="#{accountCont.selected.password}" required="true"
+							requiredMessage="#{msgs.errorPssw}"/><br/>
+		<h:message for="password" styleClass="errorMessage"/>					
+		</h:panelGroup>	
 		</h:panelGrid>
 
-		<h:commandButton value="create" action="#{accountCont.doLogin}" />
+		<h:commandButton value="#{msgs.login}" action="#{accountCont.doLogin}" />
 	</h:form>
 </h:body>
 </html>

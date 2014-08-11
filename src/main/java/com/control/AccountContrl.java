@@ -1,12 +1,19 @@
 package com.control;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
+import rules.RulesException;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import rules.MessageProvider;
+import rules.MessagesUtil;
 
 import com.dao.AbstractFacade;
 import com.dao.AccountDAO;
@@ -21,8 +28,30 @@ public class AccountContrl implements Serializable {
 	AbstractFacade acDao;
 	private Account account;
 	private boolean edited;
+	private String requestedUrl;
+	private boolean isLoggedIn;
 	
 	
+
+	public String getRequestedUrl() {
+		return requestedUrl;
+	}
+
+
+	public void setRequestedUrl(String requestedUrl) {
+		this.requestedUrl = requestedUrl;
+	}
+
+
+	public boolean isLoggedIn() {
+		return isLoggedIn;
+	}
+
+
+	public void setLoggedIn(boolean isLoggedIn) {
+		this.isLoggedIn = isLoggedIn;
+	}
+
 
 	public boolean isEdited() {
 		return edited;
@@ -71,26 +100,47 @@ public class AccountContrl implements Serializable {
 	public void logout(){
 		
 	}
-
-	public String doLogin() {
+	public String checkLogin() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String, String> params =
+                fc.getExternalContext().getRequestParameterMap();
+        requestedUrl = params.get("url");
+		if(isLoggedIn) {
+			return requestedUrl;
+		} else {
+			return "login";
+	    }
+	}
+	
+	@SuppressWarnings("finally")
+	public String doLogin(){
 		Transaction tx = sf.getCurrentSession().beginTransaction();
+		FacesContext fc = FacesContext.getCurrentInstance();
+	    Map<String, String> params =
+	            fc.getExternalContext().getRequestParameterMap();
+	    MessageProvider mp=new MessageProvider();
+	    /*if(requestedUrl.isEmpty()) {
+	    	//requestedUrl = (params.get("url"));
+	    }*/
 		AccountDAO dao=new AccountDAO();
 		String pass=account.getPassword();
 		account=dao.getAccountByEmail(account.getEmail());
-		if(account==null){//we can do rule for the error later
-			return "login.xhtml";			
+		try{
+		if(account==null){
+	    		throw new RulesException(mp.getValue("notFound"));
 		}
-		
-		if(pass.equals(account.getPassword()))
-			return "profile.xhtml";
-		
-			
-		tx.commit();
-		return "login.xhtml";
-		
-			
-		
-		
+		if(pass.equals(account.getPassword())){
+			isLoggedIn=true;
+		}
+		if(!pass.equals(account.getPassword())){
+			throw new RulesException(mp.getValue("errorNotMatch"));
+		}
+		}catch(RulesException e) {
+			MessagesUtil.displayError(e.getMessage());
+		} finally {
+			tx.commit();
+		return requestedUrl;
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
