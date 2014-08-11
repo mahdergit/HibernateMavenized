@@ -20,13 +20,24 @@ import com.entity.Product;
 public class AccountContrl implements Serializable {
 	AbstractFacade acDao;
 	private Account account;
+	private boolean edited;
 	
+	
+
+	public boolean isEdited() {
+		return edited;
+	}
+
+
+	public void setEdited(boolean edited) {
+		this.edited = edited;
+	}
+
 
 	public Account getAccount() {
 		return account;
 	}
 
-	
 
 	public Account getSelected() {
 		if (account == null) {
@@ -62,15 +73,38 @@ public class AccountContrl implements Serializable {
 	}
 
 	public String doLogin() {
-		return null;
-	}
-	
-	public void editProfile(){
+		Transaction tx = sf.getCurrentSession().beginTransaction();
+		AccountDAO dao=new AccountDAO();
+		String pass=account.getPassword();
+		account=dao.getAccountByEmail(account.getEmail());
+		if(account==null){//we can do rule for the error later
+			return "login.xhtml";			
+		}
+		
+		if(pass.equals(account.getPassword()))
+			return "profile.xhtml";
+		
+			
+		tx.commit();
+		return "login.xhtml";
+		
+			
+		
 		
 	}
 	
+	@SuppressWarnings("unchecked")
+	public String editProfile(){
 
-	
-	
-	
+		Transaction tx = sf.getCurrentSession().beginTransaction();
+		acDao.updateEntity(account);
+		edited=false;
+		tx.commit();
+		return null;
+	}
+	public String readyEditProfile(){
+		edited=true;
+		return null;
+	}
+
 }
