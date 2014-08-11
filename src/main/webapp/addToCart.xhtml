@@ -16,9 +16,9 @@
 <h:panelGrid>
 <h1>#{productControl.product.name}</h1>
 
-Quantity: <h:inputText value="#{shoppingControl.productQuanity}"/>
+Quantity: <h:inputText value="#{cartControl.productQuanity}"/>
 Price: <h:outputText value="#{productControl.product.price}"/>
-<h:commandButton  value="Add To Cart" action="#{shoppingControl.addToCart}"/>
+<h:commandButton  value="Add To Cart" action="#{cartControl.addToCart}"/>
 
 </h:panelGrid>
 

@@ -10,23 +10,30 @@
 </h:head>
 <h:body>
 <h:form>
-<h:panelGrid columns="2">
-<h:graphicImage value="/resources/images/tp_image01.gif" />
-<h:form>
-<h:panelGrid>
-<h1>#{productControl.product.name}</h1>
 
-Quantity: <h:inputText value="#{cartControl.productQuanity}"/>
-Price: <h:outputText value="#{productControl.product.price}"/>
-<h:commandButton  value="Add To Cart" action="#{cartControl.addToCart}"/>
+<h:dataTable value="cartControl.shoppingCart.product" var="product">
+<f:facet name="caption">Order Summary</f:facet>
+<h:column>
+<f:facet name="header">Product Name</f:facet>
+#{product.name}
+</h:column>
+<h:column>
+<f:facet name="header">Product Quantity</f:facet>
+#{}
+</h:column>
+<h:column>
+<f:facet name="header">Product Price</f:facet>
+#{product.price}
+</h:column>
+<h:column>
+<f:facet name="header">Total Price</f:facet>
+#{product.price}
+</h:column>
 
-</h:panelGrid>
 
+</h:dataTable>
 
-</h:form>
-
-</h:panelGrid>
-
+<h:commandButton value=""></h:commandButton>
 
 
 </h:form>

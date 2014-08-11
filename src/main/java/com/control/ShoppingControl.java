@@ -15,6 +15,7 @@ public class ShoppingControl implements Serializable{
 
 	public void checkout(){
 		
+		
 	}
 	public void continueShopping(){
 		

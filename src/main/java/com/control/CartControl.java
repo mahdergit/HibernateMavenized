@@ -19,11 +19,21 @@ public class CartControl implements Serializable {
 	private ShoppingCart shoppingCart;
 	private int productQuanity;
 	private AbstractFacade cartDAO;
+	private int totalNoOfProducts;
 	@Inject
 	private ProductControl productControl;
-
+   
 	public CartControl() {
 		cartDAO = new CartDAO();
+	}
+
+	public int getTotalNoOfProducts() {
+		totalNoOfProducts=shoppingCart.getProduct().size();
+		return totalNoOfProducts;
+	}
+
+	public void setTotalNoOfProducts(int totalNoOfProducts) {
+		this.totalNoOfProducts = totalNoOfProducts;
 	}
 
 	public int getProductQuanity() {
@@ -34,13 +44,17 @@ public class CartControl implements Serializable {
 		this.productQuanity = productQuanity;
 	}
 
-	public void addToCart() {
+	public String addToCart() {
+		double price=0;
 		if (shoppingCart == null) {
 			shoppingCart = new ShoppingCart();
 		}
 		for (int i = 0; i < productQuanity; i++) {
 			shoppingCart.getProduct().add(productControl.getProduct());
+			price=price+ productControl.getProduct().getPrice();			
 		}
+		shoppingCart.setTotalPrice(shoppingCart.getTotalPrice()+price);
+		return "continueOrCheckout";
 
 	}
 
