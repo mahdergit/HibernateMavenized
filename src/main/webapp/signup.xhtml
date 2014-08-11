@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title>#{msgs.title}</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2">
+       First Name:
+       <h:inputText value="#{accountCont.selected.firstName}" />
+       Last Name:
+       <h:inputText value="#{accountCont.selected.lastName}" />
+        State:
+       <h:inputText value="#{accountCont.selected.state}" />
+        Street:
+       <h:inputText value="#{accountCont.selected.street}" />
+        Zip:
+       <h:inputText value="#{accountCont.selected.zip}" />
+        City:
+       <h:inputText value="#{accountCont.selected.city}" />
+        User Name/Email:
+       <h:inputText value="#{accountCont.selected.email}" />
+        Password:
+       <h:inputSecret value="#{accountCont.selected.password}" />
+		</h:panelGrid>
+
+		<h:commandButton value="create" action="#{accountCont.createAccount}" />
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,59 @@
+body{
+
+}
+#heading {
+	margin: 10px;
+	border: thin solid;
+	padding: 20px;
+	text-align: center;
+	background-color: #FFCC99;
+	color: #FF6600;
+	font-weight: bold;
+}
+
+#side {
+	border: thin solid;
+	margin: 10px;
+	padding: 20px;
+	width: 200px;
+	float: left;
+	overflow: hidden;
+	height: 300px;
+}
+
+#content {
+	padding: 20px;
+	border: thin solid;
+	margin: 10px;
+	margin-top: 20px; overflow : hidden;
+	background-color:lightblue;
+	height: 400px;
+	overflow: hidden;
+}
+
+#contentText {
+	position: relative;
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	top: 100px;
+}
+.header{
+	color:white;
+	background-color: #004080;
+}
+.oddrows{
+	background-color: white;
+}
+.evenrows{
+	background-color: lightblue;
+}
+
+.tbl{
+	font-weight: bold;
+	text-align: center;
+	width: 30em;
+}
+.errorMsg{
+	color: red;
+}
