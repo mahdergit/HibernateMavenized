@@ -23,16 +23,18 @@ import com.entity.Product;
 
 @Named("productControl")
 @SessionScoped
-public class ProductControl implements Serializable{
+public class ProductControl implements Serializable {
 	private AbstractFacade prDao;
 	private Product product;
 	private List<Product> products;
 	private String image;
 	private String categoryType;
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
-	public ProductControl(){
+
+	public ProductControl() {
 		prDao = new ProductDAO();
 	}
+
 	public Product getProduct() {
 		if(product==null){
 			product=new Product();
@@ -55,8 +57,12 @@ public class ProductControl implements Serializable{
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+<<<<<<< HEAD
 	
 	@SuppressWarnings({ "unchecked", "finally" })
+=======
+
+>>>>>>> origin/Mahder
 	public String searchProduct() {
 		Transaction tx = sf.getCurrentSession().beginTransaction();
 		MessageProvider mp=new MessageProvider();
@@ -78,19 +84,34 @@ public class ProductControl implements Serializable{
 		return "display.xhtml";
 		}
 	}
-	
-	public String moveToCart(){
+
+	private Transaction tx;
+
+	public String moveToCart() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String, String> params = fc.getExternalContext()
 				.getRequestParameterMap();
 		image = params.get("image");
-		Transaction tx = sf.getCurrentSession().beginTransaction();
-		product = (Product) prDao.loadEntity(image);
-		tx.commit();
-		
-		return "addToCart";
-		
-		
+		try {
+			tx = sf.getCurrentSession().beginTransaction();
+			product = (Product) prDao.loadEntity(image);
+
+			tx.commit();
+		} catch (RuntimeException e) {
+			tx.rollback();
+			throw e;
+		}
+
+		return "productToCart";
+
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }
