@@ -22,7 +22,7 @@ public class AccountContrl implements Serializable {
 	private Account account;
 	private boolean edited;
 	
-	
+	private boolean loggedIn=false;
 
 	public boolean isEdited() {
 		return edited;
@@ -31,6 +31,16 @@ public class AccountContrl implements Serializable {
 
 	public void setEdited(boolean edited) {
 		this.edited = edited;
+	}
+
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
 	}
 
 
@@ -82,7 +92,11 @@ public class AccountContrl implements Serializable {
 		}
 		
 		if(pass.equals(account.getPassword()))
+		{
+			loggedIn = true;
 			return "profile.xhtml";
+		}
+			
 		
 			
 		tx.commit();
