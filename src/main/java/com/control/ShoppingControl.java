@@ -40,10 +40,10 @@ public class ShoppingControl implements Serializable {
 	public String getCustomerType() {
 		return customerType;
 	}
-/*	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public String removeProduct(Product product){
 		Transaction tx = sf.getCurrentSession().beginTransaction();
-		List<Product> products=CartDAO.getProduct();
+		List<Product> products=scDao.getProduct
 		products.remove(products);
 		scDao.updateEntity(CartDAO);
 		tx.commit();
@@ -61,7 +61,7 @@ public class ShoppingControl implements Serializable {
 
 	public String checkout() {
 		String strig = null;
-		if (!accountContrl.isLoggedIn()) {
+		if (!accountContrl.isLoggedIn()) {//There is a checkLogin method in account
 			strig = "login";
 		} else {
 			Transaction tx = sf.getCurrentSession().beginTransaction();

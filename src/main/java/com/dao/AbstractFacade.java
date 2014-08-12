@@ -1,7 +1,9 @@
 package com.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import com.entity.Product;
@@ -31,7 +33,16 @@ public abstract class AbstractFacade<T> {
 	public void deleteEntity(T entity) {
 		sf.getCurrentSession().delete(entity);
 	}
+	
+	public List<T> searchEntityByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	public List<T> searchEntityCategory(String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 

@@ -302,3 +302,6 @@ display:inline;
 margin:10px 0 0 100px;
 padding-bottom:15px;
 }
+.errorMessage {
+   color:red; 
+}

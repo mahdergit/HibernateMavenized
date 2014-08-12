@@ -18,20 +18,22 @@ import rules.MessagesUtil;
 import com.dao.AbstractFacade;
 import com.dao.AccountDAO;
 import com.dao.HibernateUtil;
-import com.dao.IAccountDAO;
 import com.entity.Account;
-import com.entity.Product;
 
 @Named("accountCont")
 @SessionScoped
 public class AccountContrl implements Serializable {
-	AbstractFacade acDao;
+	private AbstractFacade acDao;
 	private Account account;
 	private boolean edited;
 	private String requestedUrl;
 	private boolean isLoggedIn;
 	
 	private boolean loggedIn=false;
+	public AccountContrl() {
+		acDao = new AccountDAO();
+	}
+
 
 	public String getRequestedUrl() {
 		return requestedUrl;
@@ -82,11 +84,7 @@ public class AccountContrl implements Serializable {
 
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
 	
-
-	public AccountContrl() {
-		acDao = new AccountDAO();
-	}
-
+	@SuppressWarnings("unchecked")
 	public String createAccount() {
 		Transaction tx = sf.getCurrentSession().beginTransaction();
 

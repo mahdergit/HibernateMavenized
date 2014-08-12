@@ -10,12 +10,16 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h:panelGrid columns="2">
-       Product Name:
-       <h:inputText value="#{accountCont.product.name}" />
+		<h:panelGrid columns="3">
+       #{msgs.searchProdct}
+       <h:inputText value="#{productControl.product.name}" />
+       <h:commandButton value="#{msgs.search}" action="#{productControl.searchProduct}" />
+	
+        #{msgs.searchProdct}
+       <h:inputText value="#{productControl.categoryType}" />
+       <h:commandButton value="#{msgs.search}" action="#{productControl.searchProduct}" />
 		</h:panelGrid>
 
-		<h:commandButton value="search for product" action="#{accountCont.searchProduct}" />
 	</h:form>
 </h:body>
 </html>
