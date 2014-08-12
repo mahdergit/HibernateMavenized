@@ -10,16 +10,16 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h:panelGrid columns="3">
-       #{msgs.searchProduct}
-       <h:inputText value="#{productControl.product.name}" />
-       <h:commandButton value="#{msgs.search}" action="#{productControl.searchProduct}" />
-	
-        #{msgs.searchCatagory}
-       <h:inputText value="#{productControl.categoryType}" />
-       <h:commandButton value="#{msgs.search}" action="#{productControl.searchProduct}" />
-		</h:panelGrid>
-
+		 <h:dataTable value="#{productControl.products}" var="product" >
+           
+            <h:column>
+               <f:facet name="product">Product Image</f:facet>
+               <h:graphicImage library="images" name="#{product.image}"/><br/>
+               #{product.name}<br/>
+                #{product.price}
+            </h:column>
+            
+         </h:dataTable>
 	</h:form>
 </h:body>
 </html>

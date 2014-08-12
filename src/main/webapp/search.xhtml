@@ -11,11 +11,11 @@
 <h:body>
 	<h:form>
 		<h:panelGrid columns="3">
-       #{msgs.searchProdct}
+       #{msgs.searchProduct}
        <h:inputText value="#{productControl.product.name}" />
        <h:commandButton value="#{msgs.search}" action="#{productControl.searchProduct}" />
 	
-        #{msgs.searchProdct}
+        #{msgs.searchCatagory}
        <h:inputText value="#{productControl.categoryType}" />
        <h:commandButton value="#{msgs.search}" action="#{productControl.searchProduct}" />
 		</h:panelGrid>

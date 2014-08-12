@@ -40,6 +40,12 @@ public class ProductControl implements Serializable{
 		return product;
 	}
 
+	public List<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 	public String getCategoryType() {
 		return categoryType;
 	}
@@ -69,7 +75,7 @@ public class ProductControl implements Serializable{
 			MessagesUtil.displayError(e.getMessage());
 		} finally {
 			tx.commit();
-		return null;
+		return "display.xhtml";
 		}
 	}
 	
