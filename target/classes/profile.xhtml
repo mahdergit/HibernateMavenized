@@ -3,14 +3,31 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<h:outputStylesheet library="css" name="styles.css" />
 	<title>#{msgs.title}</title>
 </h:head>
 <h:body>
-	<h:form>
-		<h:panelGrid columns="2" rendered="#{!accountCont.edited}">
+	<ui:composition template="/templates/giftTemplate.xhtml">
+		<ui:define name="contentpanel">
+			<h:form rendered="#{!accountCont.loggedIn}">
+				<h:panelGrid columns="2">
+        #{msgs.email}
+       <h:inputText value="#{accountCont.selected.email}" />
+        #{msgs.password}
+       <h:inputSecret value="#{accountCont.selected.password}" />
+				</h:panelGrid>
+
+				<h:commandButton value="login" action="#{accountCont.doLogin}">
+					<f:param name="url" value="profile"></f:param>
+				</h:commandButton>
+	&nbsp; &nbsp;	
+		<h:commandButton value="signup" action="signup" />
+			</h:form>
+			<h:form rendered="#{accountCont.loggedIn}">
+				<h:panelGrid columns="2" rendered="#{!accountCont.edited}">
        #{msgs.fname}
        <h:outputText value="#{accountCont.selected.firstName}" />
        #{msgs.lname}
@@ -24,10 +41,12 @@
         #{msgs.city}
        <h:outputText value="#{accountCont.selected.city}" />
         #{msgs.email}
-       <h:outputText value="#{accountCont.selected.email}" /><br/>
-       <h:commandButton value="#{msgs.edit}" action="#{accountCont.readyEditProfile}" />
-		</h:panelGrid>
-		<h:panelGrid columns="2" rendered="#{accountCont.edited}">
+       <h:outputText value="#{accountCont.selected.email}" />
+					<br />
+					<h:commandButton value="#{msgs.edit}"
+						action="#{accountCont.readyEditProfile}" />
+				</h:panelGrid>
+				<h:panelGrid columns="2" rendered="#{accountCont.edited}">
        #{msgs.fname}
        <h:inputText value="#{accountCont.selected.firstName}" />
        #{msgs.lname}
@@ -41,11 +60,16 @@
         #{msgs.city}
        <h:inputText value="#{accountCont.selected.city}" />
         #{msgs.email}
-       <h:inputText value="#{accountCont.selected.email}" /><br/>
-       <h:commandButton value="#{msgs.edit}" action="#{accountCont.editProfile}" />
-		</h:panelGrid>
+       <h:inputText value="#{accountCont.selected.email}" />
+					<br />
+					<h:commandButton value="#{msgs.edit}"
+						action="#{accountCont.editProfile}" />
+				</h:panelGrid>
 
-		
-	</h:form>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

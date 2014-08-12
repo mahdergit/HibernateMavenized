@@ -18,11 +18,12 @@ public class CartDAO extends AbstractFacade<ShoppingCart> {
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 
 	@SuppressWarnings("unchecked")
-	public int getProductQuantiy(String productid) {
+	public int getProductQuantiy(String productid,int cartID) {
 		Query query = sf.getCurrentSession().createQuery(
 				"select s from ShoppingCart s "
-						+ "Join s.product p where p.id = :id");
+						+ "Join s.product p where p.image = :id and s.id= :cartID");
 		query.setParameter("id", productid);
+		query.setParameter("cartID", cartID);
 		List<ShoppingCart> list = query.list();
 		return list.size();
 	}

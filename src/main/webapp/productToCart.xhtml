@@ -9,13 +9,38 @@
 	<title>Insert title here</title>
 </h:head>
 <h:body>
-	<h:form>
-		<h:commandButton image="#{resource['images:tp_image01.gif']}"
-			action="#{productControl.moveToCart}">
-			<f:param name="image" value="tp_image01.gif" />
-		</h:commandButton>
+<ui:composition template="/templates/giftTemplate.xhtml">
+		<ui:define name="contentpanel">
+		<h:form>
+		<div style="float: left;">
+						<div class="cnt_tile2">
+							<h:graphicImage value="/resources/images/tp_btn1.gif" width="15" height="15" alt=""
+								styleClass="tp_btn1" />
+							<p class="tp_heading">Description</p>
+						</div>
+			<div class="cnt_block1">
+				<div style="float: left; display: inline; width: 400px;">
+					<p class="cnt_txt1">
+						Name : #{productControl.product.name}<br /> PRICE : US $
+						<h:outputText value="#{productControl.product.price}" />
+						<br />
+					</p>
+					<p class="cnt_txt2">Lorem ipsum dolor sit amet, consectetuer
+						adipiscing elit. Aliquam ut nulla quis lectus scelerisque
+						tincidunt. Inhac habtasse platea dictumst. Integer cursus.Mauris
+						ligula purus, sagittis a, venenatis</p>
+				</div>
+				<h:graphicImage value="/resources/images/#{productControl.image}"
+					width="135" height="150" alt="" styleClass="cnt_image1" />
+					<h:commandButton value="Add To Cart"
+							action="addToCart" />
+			</div>
+		</div>
 
 	</h:form>
+		</ui:define>
+		</ui:composition>
+	
 
 
 </h:body>
