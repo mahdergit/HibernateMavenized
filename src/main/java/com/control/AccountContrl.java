@@ -26,32 +26,25 @@ public class AccountContrl implements Serializable {
 	private AbstractFacade acDao;
 	private Account account;
 	private boolean edited;
+
 	private String requestedUrl;
-	private boolean isLoggedIn;
 	
 	private boolean loggedIn=false;
 	public AccountContrl() {
 		acDao = new AccountDAO();
 	}
 
-
 	public String getRequestedUrl() {
 		return requestedUrl;
 	}
 
-
 	public void setRequestedUrl(String requestedUrl) {
 		this.requestedUrl = requestedUrl;
-	}
 
+	}
 
 	public boolean isLoggedIn() {
-		return isLoggedIn;
-	}
-
-
-	public void setLoggedIn(boolean isLoggedIn) {
-		this.isLoggedIn = isLoggedIn;
+		return loggedIn;
 	}
 
 
@@ -63,12 +56,13 @@ public class AccountContrl implements Serializable {
 	public void setEdited(boolean edited) {
 		this.edited = edited;
 	}
-
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
 
 	public Account getAccount() {
 		return account;
 	}
-
 
 	public Account getSelected() {
 		if (account == null) {
@@ -83,6 +77,7 @@ public class AccountContrl implements Serializable {
 	}
 
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
+
 	
 	@SuppressWarnings("unchecked")
 	public String createAccount() {
@@ -92,18 +87,22 @@ public class AccountContrl implements Serializable {
 		acDao.saveEntity(account);
 
 		tx.commit();
-
-		return null;
+		loggedIn = true;
+		return "selectedProducts";
 	}
-	public void logout(){
-		
+
+	public String logout() {
+		FacesContext.getCurrentInstance().getExternalContext()
+				.invalidateSession();
+		loggedIn = false;
+		return "index";
 	}
 	public String checkLogin() {
 		FacesContext fc = FacesContext.getCurrentInstance();
         Map<String, String> params =
                 fc.getExternalContext().getRequestParameterMap();
         requestedUrl = params.get("url");
-		if(isLoggedIn) {
+		if(loggedIn) {
 			return requestedUrl;
 		} else {
 			return "login";
@@ -128,7 +127,7 @@ public class AccountContrl implements Serializable {
 	    		throw new RulesException(mp.getValue("notFound"));
 		}
 		if(pass.equals(account.getPassword())){
-			isLoggedIn=true;
+			loggedIn=true;
 		}
 		if(!pass.equals(account.getPassword())){
 			throw new RulesException(mp.getValue("errorNotMatch"));
@@ -139,20 +138,20 @@ public class AccountContrl implements Serializable {
 			tx.commit();
 		return requestedUrl;
 		}
-
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public String editProfile(){
+	public String editProfile() {
 
 		Transaction tx = sf.getCurrentSession().beginTransaction();
 		acDao.updateEntity(account);
-		edited=false;
+		edited = false;
 		tx.commit();
 		return null;
 	}
-	public String readyEditProfile(){
-		edited=true;
+
+	public String readyEditProfile() {
+		edited = true;
 		return null;
 	}
 

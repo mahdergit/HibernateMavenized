@@ -10,63 +10,68 @@
 </h:head>
 <h:body>
 	<ui:composition>
-		
-			<h:graphicImage value="/resources/images/tp_logo.gif" width="238"
-				height="54" alt="" styleClass="tp_logo" />
 
-			<h:graphicImage value="/resources/images/tp_shopping_img.gif"
-				width="13" height="11" alt="" styleClass="tp_shopping_img" />
-			<a href="http://www.free-css.com/" class="tp_txt1">Shopping Cart
-				<br />
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
-				items
-			</a>
+		<h:graphicImage value="/resources/images/tp_logo.gif" width="238"
+			height="54" alt="" styleClass="tp_logo" />
+
+		<h:graphicImage value="/resources/images/tp_shopping_img.gif"
+			width="13" height="11" alt="" styleClass="tp_shopping_img" />
+		<a href="http://www.free-css.com/" class="tp_txt1">Shopping Cart <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+			items
+		</a>
+		<h:form>
+			<h:commandLink value="sign in :: Register" action="login"
+				rendered="#{!accountCont.loggedIn}" styleClass="tp_txt2" />
+			<h:commandLink value="Logout" action="#{accountCont.logout}"
+				rendered="#{accountCont.loggedIn}" styleClass="tp_txt2" />
+		</h:form>
+
+
+		<div class="tp_menu_tile">
 			<h:form>
-				<h:commandLink value="sign in :: Register" action="signup"
-					styleClass="tp_txt2"></h:commandLink>
-			</h:form>
+				<h:commandLink styleClass="tp_menu1" value="Home Page"
+					action="index" />
 
-
-			<div class="tp_menu_tile">
-				<a href="http://www.free-css.com/" class="tp_menu1">Home Page</a>
 				<h:graphicImage value="/resources/images/tp_divider.gif" width="2"
 					height="39" alt="" styleClass="tp_divider" />
-				<a href="http://www.free-css.com/" class="tp_menu2">Payments</a>
+				<h:commandLink styleClass="tp_menu2" value="Edit Profile"
+					action="profile" />
 				<h:graphicImage value="/resources/images/tp_divider.gif" width="2"
 					height="39" alt="" styleClass="tp_divider" />
-				<a href="http://www.free-css.com/" class="tp_menu2">Shipping</a>
-				<h:graphicImage value="/resources/images/tp_divider.gif" width="2"
-					height="39" alt="" styleClass="tp_divider" />
-				<a href="http://www.free-css.com/" class="tp_menu2">Terms</a>
+				<h:commandLink styleClass="tp_menu2" value="Just for you"
+					action="selectedProducts" />
 				<h:graphicImage value="/resources/images/tp_divider.gif" width="2"
 					height="39" alt="" styleClass="tp_divider" />
 				<a href="http://www.free-css.com/" class="tp_menu2">Contact Us</a>
 				<h:graphicImage value="/resources/images/tp_divider.gif" width="2"
 					height="39" alt="" styleClass="tp_divider" />
 				<a href="http://www.free-css.com/" class="tp_menu2">Our Store</a>
-			</div>
-			<div class="tp_tile2">
-				<h:graphicImage value="/resources/images/tp_btn1.gif" width="15"
-					height="15" alt="" styleClass="tp_btn1" />
-				<p class="tp_heading">Photo Gallery</p>
-			</div>
-			<div class="tp_block">
-				<h:graphicImage value="/resources/images/tp_image01.gif" width="140"
-					height="135" alt="" styleClass="tp_image01" />
-			</div>
-			<div class="tp_block1">
-				<h:graphicImage value="/resources/images/tp_image02.gif" width="140"
-					height="135" alt="" styleClass="tp_image01" />
-			</div>
-			<div class="tp_block1">
-				<h:graphicImage value="/resources/images/tp_image03.gif" width="140"
-					height="135" alt="" styleClass="tp_image01" />
-			</div>
-			<div class="tp_block1">
-				<h:graphicImage value="/resources/images/tp_image04.gif" width="140"
-					height="135" alt="" styleClass="tp_image01" />
-			</div>
-		
+			</h:form>
+
+		</div>
+		<div class="tp_tile2">
+			<h:graphicImage value="/resources/images/tp_btn1.gif" width="15"
+				height="15" alt="" styleClass="tp_btn1" />
+			<p class="tp_heading">Photo Gallery</p>
+		</div>
+		<div class="tp_block">
+			<h:graphicImage value="/resources/images/tp_image01.gif" width="140"
+				height="135" alt="" styleClass="tp_image01" />
+		</div>
+		<div class="tp_block1">
+			<h:graphicImage value="/resources/images/tp_image02.gif" width="140"
+				height="135" alt="" styleClass="tp_image01" />
+		</div>
+		<div class="tp_block1">
+			<h:graphicImage value="/resources/images/tp_image03.gif" width="140"
+				height="135" alt="" styleClass="tp_image01" />
+		</div>
+		<div class="tp_block1">
+			<h:graphicImage value="/resources/images/tp_image04.gif" width="140"
+				height="135" alt="" styleClass="tp_image01" />
+		</div>
+
 
 	</ui:composition>
 

@@ -31,6 +31,8 @@ public class ShoppingControl implements Serializable {
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
 	@Inject
 	private AccountContrl accountContrl;
+	@Inject
+	private CartControl cartControl;
 
 	public ShoppingControl() {
 		orderDAO = new OrderDAO();
@@ -68,6 +70,7 @@ public class ShoppingControl implements Serializable {
 			Order order = new Order();
 			order.setOrderDate(new Date());
 			order.setAccount(accountContrl.getAccount());
+			order.setProducts(cartControl.getShoppingCart().getProduct());
 			orderDAO.saveEntity(order);
 			tx.commit();
 			strig = "checkoutsuccess";
