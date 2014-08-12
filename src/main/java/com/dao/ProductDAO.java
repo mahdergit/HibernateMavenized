@@ -27,11 +27,11 @@ public class ProductDAO extends AbstractFacade<Product> {
 				"SELECT distinct p FROM Product p WHERE p.name = :name");
 		query.setParameter("name", name);
 		products = query.list();
-		System.out.println(products.get(0).getDescription());
-		System.out.println(products.get(0).getPrice());
+		//System.out.println(products.get(0).getDescription());
+		//System.out.println(products.get(0).getPrice());
 		return products;
 	}
-	public ProductCategory category(int id) {
+	/*public ProductCategory category(int id) {
 		ProductCategory cat = new ProductCategory();
 		Query query = sf.getCurrentSession().createQuery(
 				"SELECT distinct p FROM ProductCategory p WHERE p.id = :id");
@@ -40,41 +40,37 @@ public class ProductDAO extends AbstractFacade<Product> {
 		System.out.println(cat.getCategoryDescription());
 		return cat;
 	}
-
-/*	@Override
-	public ProductCategory searchEntityCategory(String type) {
-		ProductCategory cat=null;
+*/
+	@Override
+	public List<Product> searchEntityCategory(String type) {
+		
 		List<Product> products = null;
-		Query query = sf.getCurrentSession().createQuery("SELECT distinct p FROM ProductCategory p WHERE p.categoryType = :id");
-			//	"SELECT distinct p FROM Product p join p.productCategories c WHERE c.categoryType = :type");
-		query.setParameter("id", type);
-		cat = (ProductCategory) query.list().get(0);
+		Query query = sf.getCurrentSession().createQuery(
+				"SELECT distinct p FROM Product p join p.productCategories c WHERE c.categoryType = :type");
+		query.setParameter("type", type);
+		products =query.list();
 		System.out.println(products.get(0).getDescription());
 		System.out.println(products.get(0).getPrice());
-		return cat;
-	}*/
-	public ProductCategory searchCategory(String type) {
+		return products;
+	}
+	/*public ProductCategory searchCategory(String type) {
 		ProductCategory cat=null;
 		List<Product> products = null;
-		Query query = sf.getCurrentSession().createQuery("SELECT distinct p FROM ProductCategory p WHERE p.categoryType = :id");
-			//	"SELECT distinct p FROM Product p join p.productCategories c WHERE c.categoryType = :type");
+		Query query = sf.getCurrentSession().createQuery(
+				"SELECT distinct p FROM Product p join p.productCategories c WHERE c.categoryType = :type");
 		query.setParameter("id", type);
 		cat = (ProductCategory) query.list().get(0);
 		System.out.println(cat.getCategoryDescription());
-		//System.out.println(products.get(0).getPrice());
+		System.out.println(products.get(0).getPrice());
 		return cat;
-	}
+	}*/
 	public static void main(String [] args){
 		Transaction tx = sf.getCurrentSession().beginTransaction();
 		ProductDAO d=new ProductDAO();
-		Product p=(Product) d.searchEntityByName("testName").get(0);
-		ProductCategory cat=(ProductCategory) d.searchCategory("birthday");
-		cat.getProducts().add(p);
-		p.getProductCategories().add(cat);
-		AbstractFacade dd=new ProductDAO();
+		Product p=(Product) d.searchEntityByName("Image").get(0);
 		
-		//dd.updateEntity(cat);
-		//dd.updateEntity(p);
+		d.searchEntityCategory("birthday");
+		
 		tx.commit();
 	}
 
