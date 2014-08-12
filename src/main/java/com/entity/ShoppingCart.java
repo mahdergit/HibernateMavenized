@@ -26,8 +26,19 @@ public class ShoppingCart {
 	
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
+	
+	private double totalPrice;
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 
 	public int getId() {
+	
 		return id;
 	}
 

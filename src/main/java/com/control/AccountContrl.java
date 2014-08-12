@@ -31,7 +31,7 @@ public class AccountContrl implements Serializable {
 	private String requestedUrl;
 	private boolean isLoggedIn;
 	
-	
+	private boolean loggedIn=false;
 
 	public String getRequestedUrl() {
 		return requestedUrl;
@@ -141,6 +141,7 @@ public class AccountContrl implements Serializable {
 			tx.commit();
 		return requestedUrl;
 		}
+
 	}
 	
 	@SuppressWarnings("unchecked")

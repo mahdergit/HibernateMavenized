@@ -3,33 +3,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
- xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Insert title here</title>
 </h:head>
 <h:body>
-<h:form>
-<h:panelGrid columns="2">
-<h:graphicImage value="/resources/images/tp_image01.gif" />
-<h:form>
-<h:panelGrid>
-<h1>#{productControl.product.name}</h1>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:graphicImage value="/resources/images/tp_image01.gif" />
+			<h:form>
+				<h:panelGrid>
+					<h1>#{productControl.product.name}</h1>
+Quantity: <h:inputText value="#{cartControl.productQuanity}" />
+Price: <h:outputText value="#{productControl.product.price}" />
+					<h:commandButton value="Add To Cart"
+						action="#{cartControl.addToCart}" />
 
-Quantity: <h:inputText value="#{shoppingControl.productQuanity}"/>
-Price: <h:outputText value="#{productControl.product.price}"/>
-<h:commandButton  value="Add To Cart" action="#{shoppingControl.addToCart}"/>
-
-</h:panelGrid>
-
-
-</h:form>
-
-</h:panelGrid>
+				</h:panelGrid>
 
 
+			</h:form>
 
-</h:form>
+		</h:panelGrid>
+
+
+
+	</h:form>
 
 
 

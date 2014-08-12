@@ -2,6 +2,7 @@ package com.control;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Date;
 import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
@@ -14,48 +15,69 @@ import org.hibernate.Transaction;
 
 import com.dao.AbstractFacade;
 import com.dao.AccountDAO;
+import com.dao.CartDAO;
 import com.dao.HibernateUtil;
-import com.dao.ShoppingCartDAO;
 import com.entity.Product;
 import com.entity.ShoppingCart;
+import com.dao.OrderDAO;
+import com.entity.Order;
 
 @Named("shoppingControl")
 @SessionScoped
-public class ShoppingControl implements Serializable{
-	
-	private static SessionFactory sf = HibernateUtil.getSessionFactory();
+public class ShoppingControl implements Serializable {
+	private String customerType;
+	private AbstractFacade orderDAO;
 	private AbstractFacade scDao;
-	private ShoppingCart shoppingCart;
-	
+	private static SessionFactory sf = HibernateUtil.getSessionFactory();
+	@Inject
+	private AccountContrl accountContrl;
+
 	public ShoppingControl() {
-		scDao=new ShoppingCartDAO();
+		orderDAO = new OrderDAO();
+		scDao=new CartDAO();
 	}
-	public ShoppingCart getSelected(){
-		if(shoppingCart==null)
-			shoppingCart=new ShoppingCart();
-		return shoppingCart;
+
+	public String getCustomerType() {
+		return customerType;
 	}
-	public void checkout(){
-		
-	}
-	public void continueShopping(){
-		
-	}
-	@SuppressWarnings("unchecked")
+/*	@SuppressWarnings("unchecked")
 	public String removeProduct(Product product){
 		Transaction tx = sf.getCurrentSession().beginTransaction();
-		List<Product> products=shoppingCart.getProduct();
+		List<Product> products=CartDAO.getProduct();
 		products.remove(products);
-		scDao.updateEntity(shoppingCart);
+		scDao.updateEntity(CartDAO);
 		tx.commit();
 		return null;
-	}
+	}*/
 	@SuppressWarnings("unchecked")
 	public String deleteShoppingCart(ShoppingCart shoppingCart){
 		scDao.deleteEntity(shoppingCart);
 		return null;
 	}
-	
-	
-	
+
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
+	}
+
+	public String checkout() {
+		String strig = null;
+		if (!accountContrl.isLoggedIn()) {
+			strig = "login";
+		} else {
+			Transaction tx = sf.getCurrentSession().beginTransaction();
+			Order order = new Order();
+			order.setOrderDate(new Date());
+			order.setAccount(accountContrl.getAccount());
+			orderDAO.saveEntity(order);
+			tx.commit();
+			strig = "checkoutsuccess";
+		}
+
+		return strig;
+
+	}
+
+	public void continueShopping() {
+
+	}
 }

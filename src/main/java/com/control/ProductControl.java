@@ -7,7 +7,11 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import com.dao.AbstractFacade;
+import com.dao.HibernateUtil;
 import com.dao.ProductDAO;
 import com.entity.Product;
 
@@ -17,7 +21,7 @@ public class ProductControl implements Serializable{
 	private AbstractFacade prDao;
 	private Product product;
 	private String image;
-	
+	private static SessionFactory sf = HibernateUtil.getSessionFactory();
 	public ProductControl(){
 		prDao = new ProductDAO();
 	}
@@ -37,8 +41,11 @@ public class ProductControl implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String, String> params = fc.getExternalContext()
 				.getRequestParameterMap();
-		image = params.get("url");
+		image = params.get("image");
+		Transaction tx = sf.getCurrentSession().beginTransaction();
 		product = (Product) prDao.loadEntity(image);
+		tx.commit();
+		
 		return "addToCart";
 		
 		

@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import org.hibernate.SessionFactory;
 
+import com.entity.Product;
+
 
 public abstract class AbstractFacade<T> {
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
@@ -29,5 +31,9 @@ public abstract class AbstractFacade<T> {
 	public void deleteEntity(T entity) {
 		sf.getCurrentSession().delete(entity);
 	}
+
+
+
+
 
 }

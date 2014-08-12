@@ -10,12 +10,29 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h:commandButton image="#{resource['images:tp_image01.gif']}"
-			action="#{productControl.moveToCart}">
-			<f:param name="image" value="tp_image01.gif" />
-		</h:commandButton>
+		<h:panelGrid columns="2">
+			<h:graphicImage value="/resources/images/tp_image01.gif" />
+			<h:form>
+				<h1>#{productControl.product.name}</h1>
+				<h:panelGrid columns="2">
+
+					<p>There is #{cartControl.totalNoOfProducts} items in your
+						cart.</p>
+					<p>SubTotal #{cartControl.shoppingCart.totalPrice}</p>
+
+				</h:panelGrid>
+				<h:commandButton value="Continue Shoping" action="index" />
+&nbsp; &nbsp;
+					<h:commandButton value="Checkout" action="orderSummary" />
+
+			</h:form>
+
+		</h:panelGrid>
+
+
 
 	</h:form>
+
 
 
 </h:body>

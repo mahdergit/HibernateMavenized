@@ -4,13 +4,10 @@ package com.dao;
 import java.util.Collection;
 import java.util.List;
 
-import javax.transaction.Transaction;
-
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import com.entity.Account;
-import com.sun.xml.ws.runtime.dev.Session;
 
 public class AccountDAO extends AbstractFacade<Account>{
 
