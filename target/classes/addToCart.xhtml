@@ -9,15 +9,15 @@
 	<title>Insert title here</title>
 </h:head>
 <h:body>
-	<ui:composition template="/templates/giftTemplate.xhtml">
-		<ui:define name="contentpanel">
-			<h:panelGrid columns="2">
-				<h:graphicImage value="/resources/images/#{productControl.image}" />
-				<h:form>
-					<h:panelGrid>
-						<h1>#{productControl.product.name}</h1>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:graphicImage value="/resources/images/tp_image01.gif" />
+			<h:form>
+				<h:panelGrid>
+					<h1>#{productControl.product.name}</h1>
 Quantity: <h:inputText value="#{cartControl.productQuanity}" />
 Price: <h:outputText value="#{productControl.product.price}" />
+<<<<<<< HEAD
 						<h:commandButton value="Add To Cart"
 							action="#{cartControl.addToCart}" />
 							
@@ -28,18 +28,21 @@ Price: <h:outputText value="#{productControl.product.price}" />
 						<h3>
 							<h:outputText id="out" value="#{productControl.prctDescription}" />
 						</h3>
+=======
+					<h:commandButton value="Add To Cart"
+						action="#{cartControl.addToCart}" />
+>>>>>>> parent of f06e7d0... 8/12/2014 mahder
 
-					</h:panelGrid>
-
-
-				</h:form>
-
-			</h:panelGrid>
-		</ui:define>
-	</ui:composition>
+				</h:panelGrid>
 
 
+			</h:form>
 
+		</h:panelGrid>
+
+
+
+	</h:form>
 
 
 

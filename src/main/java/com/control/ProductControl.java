@@ -17,7 +17,7 @@ import com.entity.Product;
 
 @Named("productControl")
 @SessionScoped
-public class ProductControl implements Serializable {
+public class ProductControl implements Serializable{
 	private AbstractFacade prDao;
 	private Product product;
 	private String image;
@@ -31,11 +31,9 @@ public class ProductControl implements Serializable {
 	}
 
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
-
-	public ProductControl() {
+	public ProductControl(){
 		prDao = new ProductDAO();
 	}
-
 	public Product getProduct() {
 		
 		return product;
@@ -48,38 +46,23 @@ public String getProductdescription(){
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
+	
 	public String searchProduct() {
 		return null;
 	}
-
-	private Transaction tx;
-
-	public String moveToCart() {
+	
+	public String moveToCart(){
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String, String> params = fc.getExternalContext()
 				.getRequestParameterMap();
 		image = params.get("image");
-		try {
-			tx = sf.getCurrentSession().beginTransaction();
-			product = (Product) prDao.loadEntity(image);
-
-			tx.commit();
-		} catch (RuntimeException e) {
-			tx.rollback();
-			throw e;
-		}
-
-		return "productToCart";
-
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
+		Transaction tx = sf.getCurrentSession().beginTransaction();
+		product = (Product) prDao.loadEntity(image);
+		tx.commit();
+		
+		return "addToCart";
+		
+		
 	}
 
 }

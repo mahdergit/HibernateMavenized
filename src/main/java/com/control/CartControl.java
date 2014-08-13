@@ -4,15 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
-
+import org.eclipse.persistence.internal.oxm.schema.model.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
@@ -31,7 +29,7 @@ public class CartControl implements Serializable {
 	private CartDAO cartDAO;
 	private int totalNoOfProducts;
 	
-	private List<Product>  cartSummary;
+	
 //	private int prodQuantiy;
 	
 	
@@ -58,7 +56,7 @@ public class CartControl implements Serializable {
 	}
 	public int getProdQuantiy(String productid,double prodPrice) {
 		Transaction tx = sf.getCurrentSession().beginTransaction();
-		int prodQuantiy=cartDAO.getProductQuantiy(productid,shoppingCart.getId());
+		int prodQuantiy=cartDAO.getProductQuantiy(productid);
 		tx.commit();
 		totalPriceOfAProduct = prodQuantiy * prodPrice;
 		return prodQuantiy;
@@ -75,29 +73,7 @@ public class CartControl implements Serializable {
 	public int getProductQuanity() {
 		return productQuanity;
 	}
-	
-	public List<Product> getCartSummary() {
-		if(shoppingCart.getProduct() == null){
-			cartSummary = null;
-		}
-		else{
-			cartSummary = new ArrayList(); 	
-				Product pro= shoppingCart.getProduct().get(0);
-				cartSummary.add(pro);
-				for(int i=1;i<shoppingCart.getProduct().size();i++){
-					if(!shoppingCart.getProduct().get(i).equals(pro)){
-						cartSummary.add(shoppingCart.getProduct().get(i));
-						pro = shoppingCart.getProduct().get(i);
-					}
-				}
-			
-		}
 
-		return cartSummary;
-	}
-	public void setCartSummary(List<Product> cartSummary) {
-		this.cartSummary = cartSummary;
-	}
 	public ShoppingCart getShoppingCart() {
 		return shoppingCart;
 	}
@@ -109,23 +85,15 @@ public class CartControl implements Serializable {
 	public void setProductQuanity(int productQuanity) {
 		this.productQuanity = productQuanity;
 	}
-	private Transaction tx;
+
 	public String addToCart() {
 		String retStrg = null;
 		double price = 0;
-		 tx = sf.getCurrentSession().beginTransaction();
+		Transaction tx = sf.getCurrentSession().beginTransaction();
 		if (shoppingCart == null) {
 			shoppingCart = new ShoppingCart();
 			shoppingCart.setStartDate(new Date());
-			try{
-				cartDAO.saveEntity(shoppingCart);
-				
-			}
-			catch(RuntimeException e){
-				tx.rollback();
-				throw e;
-			}
-			
+			cartDAO.saveEntity(shoppingCart);
 		}
 
 		for (int i = 0; i < productQuanity; i++) {
@@ -137,15 +105,8 @@ public class CartControl implements Serializable {
 			price = price + productControl.getProduct().getPrice();
 		}
 		shoppingCart.setTotalPrice(shoppingCart.getTotalPrice() + price);
-		try{
-			cartDAO.updateEntity(shoppingCart);
-			tx.commit();
-		}
-		catch(RuntimeException e){
-			tx.rollback();
-			throw e;
-		}
-		
+		cartDAO.updateEntity(shoppingCart);
+		tx.commit();
 		return "continueOrCheckout";
 
 	}

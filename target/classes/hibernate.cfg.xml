@@ -18,8 +18,6 @@
 		<!-- Always drop and recreate the database schema on startup -->
 		<property name="hbm2ddl.auto">update</property>
 		
-		<property name="connection.isolation">8</property>
-		
 		<!-- use thread local pattern -->
 		<property name="current_session_context_class">thread</property>
 		<!-- Mapping files -->

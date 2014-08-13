@@ -47,7 +47,6 @@ public class ShoppingCart {
 	}
 
 	public List<Product> getProduct() {
-		
 		return product;
 	}
 

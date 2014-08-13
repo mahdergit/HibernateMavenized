@@ -3,18 +3,22 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<h:outputStylesheet library="css" name="styles.css" />
 	<title>#{msgs.title}</title>
 </h:head>
 <h:body>
+<<<<<<< HEAD
 	<ui:composition template="/templates/giftTemplate.xhtml">
 		<ui:define name="contentpanel">
 			<h:form>
 				<h:panelGrid columns="2">
 				
+=======
+	<h:form>
+		<h:panelGrid columns="2">
+>>>>>>> parent of f06e7d0... 8/12/2014 mahder
         #{msgs.email}
       <h:panelGroup>
 						<h:inputText id="email" value="#{accountCont.selected.email}"
@@ -32,6 +36,7 @@
 						<h:message for="passwrd" styleClass="errorMessage" />
 					</h:panelGroup>
 
+<<<<<<< HEAD
 				</h:panelGrid>
 
 				<h:commandButton value="#{msgs.login}"
@@ -42,5 +47,9 @@
 		</ui:define>
 	</ui:composition>
 
+=======
+		<h:commandButton value="create" action="#{accountCont.doLogin}" />
+	</h:form>
+>>>>>>> parent of f06e7d0... 8/12/2014 mahder
 </h:body>
 </html>

@@ -9,37 +9,30 @@
 	<title>Insert title here</title>
 </h:head>
 <h:body>
-	<ui:composition template="/templates/giftTemplate.xhtml">
-		<ui:define name="contentpanel">
-			<h:form>
-				<h:dataTable value="#{cartControl.cartSummary}"
-					var="product">
-					<f:facet name="caption">Order Summary</f:facet>
-					<h:column>
-						<f:facet name="header">Product Name</f:facet>
+	<h:form>
+		<h:dataTable value="#{cartControl.shoppingCart.product}" var="product">
+			<f:facet name="caption">Order Summary</f:facet>
+			<h:column>
+				<f:facet name="header">Product Name</f:facet>
 #{product.name}
 </h:column>
-					<h:column>
-						<f:facet name="header">Product Price</f:facet>
+			<h:column>
+				<f:facet name="header">Product Price</f:facet>
 #{product.price}
 </h:column>
-					<h:column>
-						<f:facet name="header">Product Quantity</f:facet>
+			<h:column>
+				<f:facet name="header">Product Quantity</f:facet>
 #{cartControl.getProdQuantiy(product.image,product.price)}
 </h:column>
 
-					<h:column>
-						<f:facet name="header">Total Price</f:facet>
+			<h:column>
+				<f:facet name="header">Total Price</f:facet>
 #{cartControl.totalPriceOfAProduct}
 </h:column>
-				</h:dataTable>
-
-				<h:commandButton value="CHECKOUT"
-					action="#{shoppingControl.checkout}" />
-			</h:form>
-
-		</ui:define>
-	</ui:composition>
+		</h:dataTable>
+		
+<h:commandButton value="CHECKOUT" action="#{shoppingControl.checkout}" />
+	</h:form>
 
 
 
