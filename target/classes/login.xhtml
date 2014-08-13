@@ -3,18 +3,24 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<h:outputStylesheet library="css" name="styles.css" />
 	<title>#{msgs.title}</title>
 </h:head>
 <h:body>
-<ui:composition template="/templates/giftTemplate.xhtml">
+<<<<<<< HEAD
+	<ui:composition template="/templates/giftTemplate.xhtml">
 		<ui:define name="contentpanel">
+			<h:form>
+				<h:panelGrid columns="2">
+				
+=======
 	<h:form>
 		<h:panelGrid columns="2">
+>>>>>>> parent of f06e7d0... 8/12/2014 mahder
         #{msgs.email}
+<<<<<<< HEAD
         <h:panelGroup>
        <h:inputText id="email" label="email" value="#{accountCont.selected.email}" required="true"
 							requiredMessage="#{msgs.errorEmail}"/><br/>
@@ -36,7 +42,38 @@
 
 	</h:form>
 	</ui:define>
+=======
+      <h:panelGroup>
+						<h:inputText id="email" value="#{accountCont.selected.email}"
+							required="true"
+							requiredMessage="#{msgs.msg_email_required_field}" />
+							<br/>
+						<h:message for="email" styleClass="errorMessage" />
+					</h:panelGroup>
+        #{msgs.password}
+        <h:panelGroup>
+						<h:inputSecret id="passwrd"
+							value="#{accountCont.selected.password}" required="true"
+							requiredMessage="#{msgs.msg_password_required_field}" />
+							<br/>
+						<h:message for="passwrd" styleClass="errorMessage" />
+					</h:panelGroup>
+
+<<<<<<< HEAD
+				</h:panelGrid>
+
+				<h:commandButton value="#{msgs.login}"
+					action="#{accountCont.doLogin}" />
+	&nbsp; &nbsp;	
+		<h:commandButton value="#{msgs.signup}" action="signup" immediate="true"/>
+			</h:form>
+		</ui:define>
+>>>>>>> origin/Mahder
 	</ui:composition>
-	
+
+=======
+		<h:commandButton value="create" action="#{accountCont.doLogin}" />
+	</h:form>
+>>>>>>> parent of f06e7d0... 8/12/2014 mahder
 </h:body>
 </html>

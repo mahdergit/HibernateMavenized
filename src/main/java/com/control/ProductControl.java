@@ -23,20 +23,32 @@ import com.entity.Product;
 
 @Named("productControl")
 @SessionScoped
-public class ProductControl implements Serializable {
+public class ProductControl implements Serializable{
 	private AbstractFacade prDao;
 	private Product product;
 	private List<Product> products;
 	private List<Product> allProducts;
 	private String image;
+<<<<<<< HEAD
 	private String categoryType;
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
+=======
+	private String prctDescription;
+	public String getPrctDescription() {
+		return prctDescription;
+	}
+>>>>>>> origin/Mahder
 
-	public ProductControl() {
-		prDao = new ProductDAO();
+	public void setPrctDescription(String prctDescription) {
+		this.prctDescription = prctDescription;
 	}
 
+	private static SessionFactory sf = HibernateUtil.getSessionFactory();
+	public ProductControl(){
+		prDao = new ProductDAO();
+	}
 	public Product getProduct() {
+<<<<<<< HEAD
 		if(product==null){
 			product=new Product();
 		}
@@ -101,30 +113,36 @@ public class ProductControl implements Serializable {
 	private Transaction tx;
 
 	public String moveToCart() {
+=======
+		
+		return product;
+	}
+public String getProductdescription(){
+	//prctDescription=product.getDescription();
+	prctDescription="product description!!";
+	return null;
+}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
+	public String searchProduct() {
+		return null;
+	}
+	
+	public String moveToCart(){
+>>>>>>> origin/Mahder
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String, String> params = fc.getExternalContext()
 				.getRequestParameterMap();
 		image = params.get("image");
-		try {
-			tx = sf.getCurrentSession().beginTransaction();
-			product = (Product) prDao.loadEntity(image);
-
-			tx.commit();
-		} catch (RuntimeException e) {
-			tx.rollback();
-			throw e;
-		}
-
-		return "productToCart";
-
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
+		Transaction tx = sf.getCurrentSession().beginTransaction();
+		product = (Product) prDao.loadEntity(image);
+		tx.commit();
+		
+		return "addToCart";
+		
+		
 	}
 
 }

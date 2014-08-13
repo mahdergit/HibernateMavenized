@@ -13,6 +13,7 @@
 	<ui:composition template="/templates/giftTemplate.xhtml">
 		<ui:define name="contentpanel">
 			<h:form>
+<<<<<<< HEAD
 			 
 			<ul>
 			<ui:repeat value="#{productControl.allProducts}" var="product">
@@ -28,6 +29,37 @@
                 </li>
 			</ui:repeat>
 			</ul>
+=======
+				<div class="prdBlcok">
+					<h:commandButton image="#{resource['images:speakers3.jpg']}" 
+						action="#{productControl.moveToCart}" styleClass="tp_image01">
+						<f:param name="image" value="speakers3.jpg" />
+					</h:commandButton>
+				</div>
+				<div class="prdBlcok">
+				<h:commandButton image="#{resource['images:tp_image02.gif']}"
+						action="#{productControl.moveToCart}" styleClass="tp_image01">
+						<f:param name="image" value="tp_image02.gif" />
+					</h:commandButton>
+					
+				</div>
+				<div class="prdBlcok">
+				<h:commandButton image="#{resource['images:tp_image03.gif']}"
+						action="#{productControl.moveToCart}" styleClass="tp_image01">
+						<f:param name="image" value="tp_image03.gif" />
+					</h:commandButton>
+				</div>
+				<div class="prdBlcok">
+					<h:commandButton image="#{resource['images:tp_image04.gif']}"
+						action="#{productControl.moveToCart}" styleClass="tp_image01">
+						<f:param name="image" value="tp_image04.gif" />
+					</h:commandButton>
+				</div>
+				
+				
+
+
+>>>>>>> origin/Mahder
 			</h:form>
 
 		</ui:define>

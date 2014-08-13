@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import rules.RulesException;
@@ -26,6 +25,7 @@ public class AccountContrl implements Serializable {
 	private AbstractFacade acDao;
 	private Account account;
 	private boolean edited;
+<<<<<<< HEAD
 
 	private String requestedUrl;
 	
@@ -33,18 +33,42 @@ public class AccountContrl implements Serializable {
 	public AccountContrl() {
 		acDao = new AccountDAO();
 	}
+=======
+<<<<<<< HEAD
+	private boolean signedIn = false;
+	private boolean loggedIn = false;
+=======
+	
+	private boolean loggedIn=false;
+>>>>>>> parent of f06e7d0... 8/12/2014 mahder
+>>>>>>> origin/Mahder
 
 
 	public String getRequestedUrl() {
 		return requestedUrl;
 	}
 
+<<<<<<< HEAD
 	public void setRequestedUrl(String requestedUrl) {
 		this.requestedUrl = requestedUrl;
 		}
+=======
+<<<<<<< HEAD
+	public boolean isSignedIn() {
+		return signedIn;
+	}
+
+	public void setSignedIn(boolean signedIn) {
+		this.signedIn = signedIn;
+	}
+=======
+>>>>>>> parent of f06e7d0... 8/12/2014 mahder
+
+>>>>>>> origin/Mahder
 	public void setEdited(boolean edited) {
 		this.edited = edited;
 	}
+
 
 	public boolean isLoggedIn() {
 		return loggedIn;
@@ -53,13 +77,16 @@ public class AccountContrl implements Serializable {
 		return edited;
 	}
 
+
 	public void setLoggedIn(boolean loggedIn) {
 		this.loggedIn = loggedIn;
 	}
 
+
 	public Account getAccount() {
 		return account;
 	}
+
 
 	public Account getSelected() {
 		if (account == null) {
@@ -74,8 +101,26 @@ public class AccountContrl implements Serializable {
 	}
 
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
+	
 
+<<<<<<< HEAD
 	@SuppressWarnings("unchecked")
+=======
+	public AccountContrl() {
+		acDao = new AccountDAO();
+	}
+
+	public String getGreeting() {
+	if(signedIn){
+		return "Hello "+account.getFirstName()+"!! Welcome to Our Gift Shop! ";
+	}
+	else{
+		return null;
+	}
+
+	}
+
+>>>>>>> origin/Mahder
 	public String createAccount() {
 		Transaction tx = sf.getCurrentSession().beginTransaction();
 
@@ -83,15 +128,19 @@ public class AccountContrl implements Serializable {
 		acDao.saveEntity(account);
 
 		tx.commit();
+<<<<<<< HEAD
 		loggedIn = true;
-		return "selectedProducts";
-	}
+		signedIn = true;
+		return null;
 
-	public String logout() {
-		FacesContext.getCurrentInstance().getExternalContext()
-				.invalidateSession();
-		loggedIn = false;
-		return "index";
+	}
+=======
+>>>>>>> parent of f06e7d0... 8/12/2014 mahder
+
+		return null;
+	}
+	public void logout(){
+		
 	}
 	public String checkLogin() {
 		FacesContext fc = FacesContext.getCurrentInstance();
@@ -109,6 +158,7 @@ public class AccountContrl implements Serializable {
 	@SuppressWarnings("finally")
 	public String doLogin(){
 		Transaction tx = sf.getCurrentSession().beginTransaction();
+<<<<<<< HEAD
 		FacesContext fc = FacesContext.getCurrentInstance();
 	    Map<String, String> params =
 	            fc.getExternalContext().getRequestParameterMap();
@@ -136,20 +186,48 @@ public class AccountContrl implements Serializable {
 		return requestedUrl;
 		}
 		
-	}
+=======
+		AccountDAO dao=new AccountDAO();
+		String pass=account.getPassword();
+		account=dao.getAccountByEmail(account.getEmail());
+		if(account==null){//we can do rule for the error later
+			return "login.xhtml";			
+		}
+		
+		if(pass.equals(account.getPassword()))
+		{
+			loggedIn = true;
+			return "profile.xhtml";
+		}
+			
+		
+			
+		tx.commit();
+<<<<<<< HEAD
 
+		return "login.xhtml";
+
+=======
+		return "login.xhtml";
+		
+			
+		
+		
+>>>>>>> parent of f06e7d0... 8/12/2014 mahder
+>>>>>>> origin/Mahder
+	}
+	
 	@SuppressWarnings("unchecked")
-	public String editProfile() {
+	public String editProfile(){
 
 		Transaction tx = sf.getCurrentSession().beginTransaction();
 		acDao.updateEntity(account);
-		edited = false;
+		edited=false;
 		tx.commit();
 		return null;
 	}
-
-	public String readyEditProfile() {
-		edited = true;
+	public String readyEditProfile(){
+		edited=true;
 		return null;
 	}
 
