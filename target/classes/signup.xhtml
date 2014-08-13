@@ -12,31 +12,89 @@
 <h:body>
 	<ui:composition template="/templates/giftTemplate.xhtml">
 		<ui:define name="contentpanel">
-			<h:form>
+			<h:form rendered="#{!accountCont.signedIn}">
 				<h:panelGrid columns="2">
        First Name:
-       <h:inputText value="#{accountCont.selected.firstName}" />
+       <h:panelGroup>
+						<h:inputText id="fname" value="#{accountCont.selected.firstName}"
+							required="true"
+							requiredMessage="#{msgs.msg_fname_required_field}" />
+						<br />
+						<h:message for="fname" styleClass="errorMessage" />
+					</h:panelGroup>
+     		
        Last Name:
        <h:inputText value="#{accountCont.selected.lastName}" />
         State:
-       <h:inputText value="#{accountCont.selected.state}" />
+         <h:panelGroup>
+						<h:inputText id="state" value="#{accountCont.selected.state}"
+							required="true"
+							requiredMessage="#{msgs.msg_state_required_field}" />
+						<br />
+						<h:message for="state" styleClass="errorMessage" />
+					</h:panelGroup>
+       
         Street:
-       <h:inputText value="#{accountCont.selected.street}" />
+         <h:panelGroup>
+						<h:inputText id="street" value="#{accountCont.selected.street}"
+							required="true"
+							requiredMessage="#{msgs.msg_street_required_field}" />
+						<br />
+						<h:message for="street" styleClass="errorMessage" />
+					</h:panelGroup>
+      	
         Zip:
-       <h:inputText value="#{accountCont.selected.zip}" />
+         <h:panelGroup>
+						<h:inputText id="zip" value="#{accountCont.selected.zip}"
+							required="true" requiredMessage="#{msgs.msg_zip_required_field}" />
+						<br />
+						<h:message for="zip" styleClass="errorMessage" />
+					</h:panelGroup>
+     	
         City:
-       <h:inputText value="#{accountCont.selected.city}" />
+         <h:panelGroup>
+						<h:inputText id="city" value="#{accountCont.selected.city}"
+							required="true" requiredMessage="#{msgs.msg_city_required_field}" />
+						<br />
+						<h:message for="city" styleClass="errorMessage" />
+					</h:panelGroup>
+       	
         User Name/Email:
-       <h:inputText value="#{accountCont.selected.email}" />
+         <h:panelGroup>
+						<h:inputText id="email" value="#{accountCont.selected.email}"
+							required="true"
+							requiredMessage="#{msgs.msg_email_required_field}"
+							validatorMessage="#{msgs.msg_email_validate_field}">
+							<!--  <f:validateRegex
+								pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@
+        [A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$" />  -->
+						</h:inputText>
+						<br />
+						<h:message for="email" styleClass="errorMessage" />
+					</h:panelGroup>
+  
         Password:
-       <h:inputSecret value="#{accountCont.selected.password}" />
+         <h:panelGroup>
+						<h:inputSecret id="pass" value="#{accountCont.selected.password}"
+							required="true"
+							requiredMessage="#{msgs.msg_password_required_field}" />
+						<br />
+						<h:message for="pass" styleClass="errorMessage" />
+					</h:panelGroup>
+
 				</h:panelGrid>
 
-				<h:commandButton value="Signup" 
-					action="#{accountCont.createAccount}" />
-				
-					
+				<h:commandButton value="Signup"
+					action="#{accountCont.createAccount}">
+
+				</h:commandButton>
+
 			</h:form>
+			<h3>
+				<h:outputText id="out" value="#{accountCont.greeting}" />
+
+			</h3>
+
 
 		</ui:define>
 

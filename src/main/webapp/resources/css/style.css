@@ -1,3 +1,12 @@
+.errorMessage{
+	color: red;
+}
+
+
+
+
+
+
 body{
 margin:0;
 padding:0;
@@ -113,6 +122,8 @@ display:inline;
 float:left;
 margin:5px 0 0 4px;
 padding-bottom:5px;
+width: 140px;
+height: 135px;
 }
 .tp_block1{
 float:left;

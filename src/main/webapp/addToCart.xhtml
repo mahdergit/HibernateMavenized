@@ -20,6 +20,14 @@ Quantity: <h:inputText value="#{cartControl.productQuanity}" />
 Price: <h:outputText value="#{productControl.product.price}" />
 						<h:commandButton value="Add To Cart"
 							action="#{cartControl.addToCart}" />
+							
+						<h:commandButton value="Product Description" action="#{productControl.getProductdescription}">
+							<f:ajax render="out" />
+						</h:commandButton>
+					
+						<h3>
+							<h:outputText id="out" value="#{productControl.prctDescription}" />
+						</h3>
 
 					</h:panelGrid>
 

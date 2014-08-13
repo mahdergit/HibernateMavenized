@@ -22,11 +22,19 @@ public class AccountContrl implements Serializable {
 	AbstractFacade acDao;
 	private Account account;
 	private boolean edited;
-
+	private boolean signedIn = false;
 	private boolean loggedIn = false;
 
 	public boolean isEdited() {
 		return edited;
+	}
+
+	public boolean isSignedIn() {
+		return signedIn;
+	}
+
+	public void setSignedIn(boolean signedIn) {
+		this.signedIn = signedIn;
 	}
 
 	public void setEdited(boolean edited) {
@@ -63,6 +71,16 @@ public class AccountContrl implements Serializable {
 		acDao = new AccountDAO();
 	}
 
+	public String getGreeting() {
+	if(signedIn){
+		return "Hello "+account.getFirstName()+"!! Welcome to Our Gift Shop! ";
+	}
+	else{
+		return null;
+	}
+
+	}
+
 	public String createAccount() {
 		Transaction tx = sf.getCurrentSession().beginTransaction();
 
@@ -71,7 +89,9 @@ public class AccountContrl implements Serializable {
 
 		tx.commit();
 		loggedIn = true;
-		return "selectedProducts";
+		signedIn = true;
+		return null;
+
 	}
 
 	public String logout() {
@@ -96,8 +116,7 @@ public class AccountContrl implements Serializable {
 		}
 
 		tx.commit();
-		
-		
+
 		return "login.xhtml";
 
 	}

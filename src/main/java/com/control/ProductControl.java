@@ -21,6 +21,15 @@ public class ProductControl implements Serializable {
 	private AbstractFacade prDao;
 	private Product product;
 	private String image;
+	private String prctDescription;
+	public String getPrctDescription() {
+		return prctDescription;
+	}
+
+	public void setPrctDescription(String prctDescription) {
+		this.prctDescription = prctDescription;
+	}
+
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
 
 	public ProductControl() {
@@ -28,9 +37,14 @@ public class ProductControl implements Serializable {
 	}
 
 	public Product getProduct() {
+		
 		return product;
 	}
-
+public String getProductdescription(){
+	//prctDescription=product.getDescription();
+	prctDescription="product description!!";
+	return null;
+}
 	public void setProduct(Product product) {
 		this.product = product;
 	}
