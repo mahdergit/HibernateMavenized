@@ -36,3 +36,8 @@ Icon
 .Trashes
 
 target/classes/com/control/AccountContrl.class
+src/main/webapp/resources/css/style.css
+src/main/webapp/resources/css/style.css
+src/main/webapp/sections/main/leftpanel.xhtml
+src/main/webapp/resources/css/style.css
+target/classes/com/control/AccountContrl.class
