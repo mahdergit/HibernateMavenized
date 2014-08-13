@@ -47,14 +47,22 @@
 				<h:graphicImage value="/resources/images/tp_divider.gif" width="2"
 					height="39" alt="" styleClass="tp_divider" />
 				<a href="http://www.free-css.com/" class="tp_menu2">Our Store</a>
-			</h:form>
-
+			
+	</h:form>
 		</div>
+		<h:form>
 		<div class="tp_tile2">
-			<h:graphicImage value="/resources/images/tp_btn1.gif" width="15"
-				height="15" alt="" styleClass="tp_btn1" />
-			<p class="tp_heading">Photo Gallery</p>
-		</div>
+       <h:inputText value="#{productControl.product.name}" />
+		
+       <h:commandButton value="#{msgs.searproduct}" action="#{productControl.searchProduct}" />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+       <h:inputText value="#{productControl.categoryType}" />
+       <h:commandButton value="#{msgs.searcatagory}" action="#{productControl.searchProduct}" />
+      </div>
+		
+			
+		
 		<div class="tp_block">
 			<h:graphicImage value="/resources/images/tp_image01.gif" width="140"
 				height="135" alt="" styleClass="tp_image01" />
@@ -72,7 +80,7 @@
 				height="135" alt="" styleClass="tp_image01" />
 		</div>
 
-
+</h:form>
 	</ui:composition>
 
 </h:body>

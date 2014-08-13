@@ -10,51 +10,50 @@
 </h:head>
 <h:body>
 	<ui:composition>
-	
+	<h:form>
 					<div class="lp_block">
 						<div class="lp_tile">
 							<h:graphicImage value="/resources/images/lp_btn1.gif" width="15" height="15" alt=""
-								styleClass="lp_btn1" />
+								styleClass="lp_btn1" />								
 							<p class="lp_heading">Categories</p>
 						</div>
-						<div class="rp_listblock">
-							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""
-								styleClass="rp_btn3" /> <a href="http://www.free-css.com/"
-								class="rp_listtxt">BirthDay</a>
-						</div>
-						<div class="rp_listblock">
-							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""
-								styleClass="rp_btn3" /> <a href="http://www.free-css.com/"
-								class="rp_listtxt">Father's Day</a>
-						</div>
-						<div class="rp_listblock">
-							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""
-								styleClass="rp_btn3" /> <a href="http://www.free-css.com/"
-								class="rp_listtxt">Graduation</a>
-						</div>
-						<div class="rp_listblock">
-							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""
-								styleClass="rp_btn3" /> <a href="http://www.free-css.com/"
-								class="rp_listtxt">Mather's Day</a>
-						</div>
-						<div class="rp_listblock">
-							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""
-								styleClass="rp_btn3" /> <a href="http://www.free-css.com/"
-								class="rp_listtxt">New Year</a>
-						</div>
-						<div class="rp_listblock">
-							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""
-								styleClass="rp_btn3" /> <a href="http://www.free-css.com/"
-								class="rp_listtxt">Wedding</a>
-						</div>
-						<div class="rp_listblock">
-							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""
-								styleClass="rp_btn3" /> <a href="http://www.free-css.com/"
-								class="rp_listtxt">Valentine's Day</a>
-						</div>
-						
-						
-						
+						<h:panelGrid columns="1">
+							<h:commandLink  action="#{productControl.catagorizedProduct(birthday)}"
+							style="text-decoration:none;color:black;font:11px Tahoma;" styleClass="rp_btn3">
+							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""/>
+								 BirthDay
+							</h:commandLink>
+							<h:commandLink  action="#{productControl.catagorizedProduct(fathersday)}"
+							style="text-decoration:none;color:black;font:11px Tahoma;" styleClass="rp_btn3">
+							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""/>
+								Father's Day
+							</h:commandLink>
+						<h:commandLink  action="#{productControl.catagorizedProduct(graduation)}"
+							style="text-decoration:none;color:black;font:11px Tahoma;" styleClass="rp_btn3">
+							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""/>
+								Graduation
+						</h:commandLink>
+						<h:commandLink  action="#{productControl.catagorizedProduct(MothersDay)}"
+							style="text-decoration:none;color:black;font:11px Tahoma;" styleClass="rp_btn3">
+							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt="" /> 
+								Mother's Day
+						</h:commandLink>
+						<h:commandLink  action="#{productControl.catagorizedProduct(NewYear)}"
+							style="text-decoration:none;color:black;font:11px Tahoma;" styleClass="rp_btn3">
+							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""/> 
+								New Year
+						</h:commandLink>
+						<h:commandLink  action="#{productControl.catagorizedProduct(Wedding)}"
+							style="text-decoration:none;color:black;font:11px Tahoma;" styleClass="rp_btn3">
+							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt=""/> 
+								Wedding
+						</h:commandLink>
+						<h:commandLink  action="#{productControl.catagorizedProduct(ValentinesDay)}"
+							style="text-decoration:none;color:black;font:11px Tahoma;" styleClass="rp_btn3">
+							<h:graphicImage value="/resources/images/lp_btn2.gif" width="6" height="5" alt="" /> 
+								Valentine's Day
+						</h:commandLink>
+						</h:panelGrid>
 					
 					</div>
 				
@@ -65,7 +64,7 @@
 						styleClass="lp_image" /></a>
 		
 
-
+	</h:form>
 
 	</ui:composition>
 </h:body>

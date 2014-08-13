@@ -1,0 +1,19 @@
+image              Description       		Name          			Price
+giftBox1_B.jpg     Silver Gift Box   		giftBox1_B 			22.0
+necklace1_B_M_V.jpg  Silver Nacklace 		necklace1_B_M_V   		15.0
+nacklace_2_B.jpg     Artificial perl nacklace pair     nacklace_2_B		10.0
+nacklace_3_M_V.jpg   Ruby and gold plated necklace	nacklace_3_M_V		30.0
+purse1_B_M.jpg	     KWD Brown purse			purse1_B_M		35.0
+teddybear_1_B.jpg    Pink fiber teddy bear		teddybear_1_B		24.0
+watch_1_F_V_B.jpg     'X' Watch waterproof              watch_1_F_V_B       378.0
+giftbasket1_F.jpg     EXclusively created for Father!!! giftbasket1_F		100.0
+keyring_1_F.jpg		Especially for father		keyring_1_F		5.0
+tshirt1_F.jpg		Large Size 100% Cotton TShirt	tshirt1_F		25.0
+tshirt2_F.jpg		XL Size Cotton Ninja Tshirt	tshirt2_F		26.0
+watch_2_F.jpg		Goald plated pocket watch	watch_2_F		224.0
+giftbasket2_M.jpg	Exclusively created for MOM	giftbasket2_M		100.0
+showpice_1_M.jpg	Glass show pice			showpice_1_M		10.0
+tshirt3_M.jpg		Black T-Shirt for Mom		tshirt3_M		12.0
+bracelate1_V.jpg	A pair of bracelets for valentines bracelate1_V		6.0
+keyring_2_V.jpg		Silver color pair key ring	keyring_2_V		9.0
+ring1_V.jpg		1C Diamond heart shaped ring	ring1_V			1200.0

@@ -13,35 +13,21 @@
 	<ui:composition template="/templates/giftTemplate.xhtml">
 		<ui:define name="contentpanel">
 			<h:form>
-				<div class="prdBlcok">
-					<h:commandButton image="#{resource['images:tp_image01.gif']}"
-						action="#{productControl.moveToCart}" styleClass="tp_image01">
-						<f:param name="image" value="tp_image01.gif" />
-					</h:commandButton>
-				</div>
-				<div class="prdBlcok">
-				<h:commandButton image="#{resource['images:tp_image02.gif']}"
-						action="#{productControl.moveToCart}" styleClass="tp_image01">
-						<f:param name="image" value="tp_image02.gif" />
-					</h:commandButton>
-					
-				</div>
-				<div class="prdBlcok">
-				<h:commandButton image="#{resource['images:tp_image03.gif']}"
-						action="#{productControl.moveToCart}" styleClass="tp_image01">
-						<f:param name="image" value="tp_image03.gif" />
-					</h:commandButton>
-				</div>
-				<div class="prdBlcok">
-					<h:commandButton image="#{resource['images:tp_image04.gif']}"
-						action="#{productControl.moveToCart}" styleClass="tp_image01">
-						<f:param name="image" value="tp_image04.gif" />
-					</h:commandButton>
-				</div>
-				
-				
-
-
+			 
+			<ul>
+			<ui:repeat value="#{productControl.allProducts}" var="product">
+				<li>
+				<h:panelGroup class="prdBlcok">
+				<h:commandLink action="#{productControl.moveToCart}" style="text-decoration:none;color:black;font:11px Tahoma;">
+				<h:graphicImage library="images" name="#{product.image}" width="130" height="130"/>
+               	#{product.name}<br/>
+                $#{product.price}
+                <f:param name="image" value="#{product.image}"/>
+                </h:commandLink>
+                </h:panelGroup>
+                </li>
+			</ui:repeat>
+			</ul>
 			</h:form>
 
 		</ui:define>

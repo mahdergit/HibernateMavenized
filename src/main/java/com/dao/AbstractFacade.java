@@ -43,6 +43,10 @@ public abstract class AbstractFacade<T> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public List<T> selectAllEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 

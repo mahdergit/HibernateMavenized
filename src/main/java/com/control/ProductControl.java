@@ -27,6 +27,7 @@ public class ProductControl implements Serializable {
 	private AbstractFacade prDao;
 	private Product product;
 	private List<Product> products;
+	private List<Product> allProducts;
 	private String image;
 	private String categoryType;
 	private static SessionFactory sf = HibernateUtil.getSessionFactory();
@@ -45,6 +46,7 @@ public class ProductControl implements Serializable {
 	public List<Product> getProducts() {
 		return products;
 	}
+	
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
@@ -57,14 +59,25 @@ public class ProductControl implements Serializable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-<<<<<<< HEAD
-	
-	@SuppressWarnings({ "unchecked", "finally" })
-=======
-
->>>>>>> origin/Mahder
+	public List<Product> getAllProducts() {
+		tx = sf.getCurrentSession().beginTransaction();
+		if(allProducts==null)
+			allProducts=prDao.selectAllEntity();	
+		tx.commit();
+		return allProducts;
+	}
+	public String catagorizedProduct(String cat){
+		tx = sf.getCurrentSession().beginTransaction();
+		allProducts=null;
+		allProducts=prDao.searchEntityCategory(cat);
+		tx.commit();
+		return null;
+	}
+	public void setAllProducts(List<Product> allProducts) {
+		this.allProducts = allProducts;
+	}
 	public String searchProduct() {
-		Transaction tx = sf.getCurrentSession().beginTransaction();
+		tx = sf.getCurrentSession().beginTransaction();
 		MessageProvider mp=new MessageProvider();
 		String name=product.getName();
 		try{
@@ -81,7 +94,7 @@ public class ProductControl implements Serializable {
 			MessagesUtil.displayError(e.getMessage());
 		} finally {
 			tx.commit();
-		return "display.xhtml";
+		return "null";
 		}
 	}
 

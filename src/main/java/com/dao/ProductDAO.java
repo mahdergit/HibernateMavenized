@@ -31,16 +31,14 @@ public class ProductDAO extends AbstractFacade<Product> {
 		//System.out.println(products.get(0).getPrice());
 		return products;
 	}
-	/*public ProductCategory category(int id) {
-		ProductCategory cat = new ProductCategory();
+	@Override
+	public List<Product> selectAllEntity() {
+		List<Product> products = null;
 		Query query = sf.getCurrentSession().createQuery(
-				"SELECT distinct p FROM ProductCategory p WHERE p.id = :id");
-		query.setParameter("id", id);
-		cat = (ProductCategory) query.list().get(0);
-		System.out.println(cat.getCategoryDescription());
-		return cat;
+				"FROM Product");
+		products =query.list();
+		return products;
 	}
-*/
 	@Override
 	public List<Product> searchEntityCategory(String type) {
 		
@@ -49,8 +47,7 @@ public class ProductDAO extends AbstractFacade<Product> {
 				"SELECT distinct p FROM Product p join p.productCategories c WHERE c.categoryType = :type");
 		query.setParameter("type", type);
 		products =query.list();
-		System.out.println(products.get(0).getDescription());
-		System.out.println(products.get(0).getPrice());
+		
 		return products;
 	}
 	/*public ProductCategory searchCategory(String type) {
